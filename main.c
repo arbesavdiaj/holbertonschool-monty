@@ -1,52 +1,48 @@
 #include "monty.h"
-
+#define MAX_SIZE 100
 /**
- * main - Entry point of the program.
- * @argc: The number of command-line arguments.
- * @argv: An array containing the command-line arguments as strings.
- * Return: 0 upon success, other values for errors.
+ * main- ENTRY POINT
+ * @argc: arg count
+ * @argv: list of arguments
+ *Return: 0
  */
-
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
+	FILE *file = NULL;
+	int line = 1;
+	stack_t *head = NULL;
+	char *opcode = NULL, *number = "0", command[MAX_SIZE];
+	void (*function)(stack_t **stack, unsigned int line_number, int line) = NULL;
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	char *filename = argv[1];
-	FILE *script_file = fopen(filename, "r");
-
-	if (script_file == NULL)
+	file = fopen(argv[1], "r");
+	if (file == NULL)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", filename);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	stack_t *stack = NULL;
-	char *line = NULL;
-	size_t len = 0;
-	unsigned int line_number = 0;
-
-	while (getline(&line, &len, script_file) != -1)
+	while (fgets(command, MAX_SIZE, file) != NULL)
 	{
-		line_number++;
-		char *token = strtok(line, " \t\n");
-
-		if (token == NULL || token[0] == '#')
-			continue;
-		void (*op_func)(stack_t **, unsigned int) = get_op(token);
-
-		if (op_func == NULL)
+		opcode = strtok(command, " \n");
+		if (opcode == NULL || strcmp(opcode, "nop") == 0)
 		{
-			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
-			free(line), fclose(script_file);
-			free_stack(&stack);
-			exit(EXIT_FAILURE);
+			line++;
+			continue;
 		}
-		op_func(&stack, line_number);
+		number = strtok(NULL, " \n");
+		if (number == NULL)
+			number = "s";
+
+		function = get_function(opcode);
+		handleErrors(opcode, number, function, line, head, file);
+		function(&head, atoi(number), line);
+		line++;
 	}
-	free(line);
-	fclose(script_file);
-	free_stack(&stack);
-	return (EXIT_SUCCESS);
+	fclose(file);
+	free_stack(head);
+	return (0);
 }
