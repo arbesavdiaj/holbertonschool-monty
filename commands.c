@@ -4,7 +4,7 @@
  * @stack: A pointer to a pointer to the top of the stack
  * @line_number: The current line number in the script
  */
-void _pop(stack_t **stack, unsigned int line_number)
+void _pop(stack_t *stack, unsigned int line_number)
 {
 	if (*stack == NULL)
 	{
