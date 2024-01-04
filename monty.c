@@ -88,7 +88,7 @@ void free_stack(stack_t **stack)
  * @stack: A pointer to a pointer to the top of the stack
  * @line_number: The current line number in the script
  */
- 
+
 void _pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
@@ -98,3 +98,4 @@ void _pint(stack_t **stack, unsigned int line_number)
 	}
 	printf("%d\n", (*stack)->n);
 }
+
