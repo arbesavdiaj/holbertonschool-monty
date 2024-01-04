@@ -24,4 +24,3 @@ void (*get_op(char *token))(stack_t **stack, unsigned int line_number)
 		return (_nop);
 	return (NULL);
 }
-
