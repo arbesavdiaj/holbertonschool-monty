@@ -1,12 +1,10 @@
 #include "monty.h"
-
 /**
  * main - Entry point of the program.
  * @argc: The number of command-line arguments.
  * @argv: An array containing the command-line arguments as strings.
  * Return: 0 upon success, other values for errors.
  */
- 
 int main(int argc, char *argv[])
 {
 	if (argc != 2)
