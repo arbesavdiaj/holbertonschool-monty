@@ -5,6 +5,7 @@
  * @stack: A pointer to a pointer to the top of the stack
  * @line_number: The current line number in the script
  */
+
 void _push(stack_t **stack, unsigned int line_number)
 {
 	char *arig = strtok(NULL, " \t\n");
@@ -47,11 +48,13 @@ void _push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+
 /**
  * _pall - prints all the values on the stack, starting from the top
  * @stack: A pointer to a pointer to the top of the stack
  * @line_number: The current line number in the script
  */
+
 void _pall(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
@@ -63,10 +66,12 @@ void _pall(stack_t **stack, unsigned int line_number)
 		current = current->next;
 	}
 }
+
 /**
  * free_stack - frees all the elements of a stack_t stack
  * @stack: A pointer to a pointer to the top of the stack
  */
+
 void free_stack(stack_t **stack)
 {
 	while (*stack)
@@ -77,11 +82,13 @@ void free_stack(stack_t **stack)
 		*stack = temp;
 	}
 }
+
 /**
  * _pint - prints the value at the top of the stack
  * @stack: A pointer to a pointer to the top of the stack
  * @line_number: The current line number in the script
  */
+ 
 void _pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)

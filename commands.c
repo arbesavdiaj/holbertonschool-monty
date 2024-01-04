@@ -1,9 +1,11 @@
 #include "monty.h"
+
 /**
  * _pop - removes the top element of the stack
  * @stack: A pointer to a pointer to the top of the stack
  * @line_number: The current line number in the script
  */
+
 void _pop(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
@@ -15,11 +17,13 @@ void _pop(stack_t **stack, unsigned int line_number)
 	*stack = (*stack)->next;
 	free(temp);
 }
+
 /**
  * _swap - swaps the top two elements of the stack
  * @stack: A pointer to a pointer to the top of the stack
  * @line_number: The current line number in the script
  */
+
 void _swap(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL || (*stack)->next == NULL)
@@ -31,11 +35,13 @@ void _swap(stack_t **stack, unsigned int line_number)
 	(*stack)->n = (*stack)->next->n;
 	(*stack)->next->n = temp;
 }
+
 /**
  * _add - adds the top two elements of the stack
  * @stack: A pointer to a pointer to the top of the stack
  * @line_number: The current line number in the script
  */
+
 void _add(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL || (*stack)->next == NULL)
@@ -49,11 +55,13 @@ void _add(stack_t **stack, unsigned int line_number)
 	free(temp);
 	(*stack)->n = result;
 }
+
 /**
  * _nop - does nothing
  * @stack: A pointer to a pointer to the top of the stack
  * @line_number: The current line number in the script
  */
+ 
 void _nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;

@@ -30,11 +30,13 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
+
 typedef struct instruction_s
 {
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
 void (*get_op(char *token))(stack_t **stack, unsigned int line_number);
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
